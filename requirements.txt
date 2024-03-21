@@ -1,4 +1,4 @@
 Flask==3.0.2
 Flask-SQLAlchemy==3.1.1
-numpy==1.26.4
+numpy
 numpy-financial==1.0.0
