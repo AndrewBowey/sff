@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block body %}
+<h2>Rewards</h2>
+<p>Coins can be earned by meeting savings goals and completing tasks such as increasing your pension contributions. You can exchange these coins by revealing rewards below. Choose wisely!</p>
+<h3 style="margin-top: 50px;">Available Rewards</h3>
+<div class="reward-grid">
+    <div class="reward"><img src="{{ url_for('static', filename='coffee.jpg') }}" width="400" /></div>
+    <div class="cover" id="cover">
+        
+    </div>
+</div>
+<script>
+
+function remove(el) {
+  var element = el;
+  element.remove();
+}
+
+var cover = document.getElementById("cover");
+
+for (let index = 0; index < 6; index++) {
+    var row = document.createElement('div');
+    row.className = "cover-item";
+    row.textContent = "Reveal for 1 coin"
+    row.id = "cover-tile-" + index
+    cover.appendChild(row);
+
+}
+</script>
+{% endblock %}

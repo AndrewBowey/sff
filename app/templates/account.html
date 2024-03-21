@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block body %}
+<h2>My Account</h2>
+<p><b>Username:</b> {{ user.username }}</p>
+<p><b>Name:</b> {{ user.name }}</p>
+<p><b>Email:</b> {{ user.email }}</p>
+<p><b>Age:</b> {{ age }}</p>
+<p><b>Retirement Age:</b> {{ user.retirement_age }}</p>
+<p><b>Salary:</b> £{{ user.salary }}</p>
+<p><b>Current Contribution:</b> {{ user.contribution }}% (£{{ contrib_amount }}/month)</p>
+<p><b>Current Employer Contribution:</b> {{ user.employer_contribution }}% (£{{ emp_contrib_amount }}/month)</p>
+{% endblock %}

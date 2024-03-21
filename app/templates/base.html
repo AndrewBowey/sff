@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>PlanSmart</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+    </head>
+    <body>
+        <div id="top-bar">
+            <div class="container">
+                <div id="logo">
+                    <div style="float: left;"><img src="{{ url_for('static', filename='logo.png') }}" width="70" /></div>
+                    <div style="float: left;padding-top: 0.8rem;padding-left: 30px;"><h1>PlanSmart</h1></div>
+                </div>
+                <div id="nav">
+                    <a href="/">Home</a> | <a href="/visualiser">Visualiser</a> | <a href="/account">Account</a>
+                    <p style="word-spacing: normal;">Coins: <b>{{ user.coins }}</b></p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block body %}
+<h2>Visualiser</h2>
+<div class="slidecontainer">
+    <p>Starting Age - <span id="age-value"><b>{{ age }}</b></span></p>
+    <input type="range" min="{{ age }}" max="65" value="{{ age }}" class="slider" id="age">
+</div>
+<div class="slidecontainer">
+    <p>Employee Contribution - <span id="employee-contribution-value"><b>{{ employee_contrib }}%</b></span></p>
+    <input type="range" min="1" max="100" value="{{ employee_contrib }}" class="slider" id="employee-contribution">
+</div>
+<div class="slidecontainer">
+    <p>Employer Contribution - <span id="employer-contribution-value"><b>{{ employer_contrib }}%</b></span></p>
+    <input type="range" min="1" max="100" value="{{ employer_contrib }}" class="slider" id="employer-contribution">
+</div>
+<div id="future-value-container"><h2>Potential Future Value: £<span id="future-value">{{ future_value }}</span></h2></div>
+<div id="more-less">This is <b>£<span id="more-less-value">0</span> less</b> than if you started now.</div>
+<script>
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function sendRequest(employee_value, employer_value, age) {
+    const url = "/calc-fv?empe=" + employee_value + "&empr=" + employer_value + "&age=" + age;
+    fetch(url)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error ${response.status}`);
+            }
+            return response.text(); // Or `.json()` or one of the others
+        })
+        .then((data) => {
+            console.log(data)
+            data = JSON.parse(data)
+            document.getElementById("future-value").innerHTML = numberWithCommas(data.future_value);
+            document.getElementById("more-less-value").innerHTML = numberWithCommas(parseInt(data.future_value_now) - parseInt(data.future_value));
+        })
+        .catch((error) => {
+            // ...handle/report error...
+        });
+}
+
+var age_slider = document.getElementById("age");
+var employee_slider = document.getElementById("employee-contribution");
+var employer_slider = document.getElementById("employer-contribution");
+
+var age_value = document.getElementById("age-value");
+var employee_value = document.getElementById("employee-contribution-value");
+var employer_value = document.getElementById("employer-contribution-value");
+
+age_slider.oninput = function() {
+    age_value.innerHTML = "<b>" + this.value + "</b>";
+    sendRequest(employee_slider.value, employer_slider.value, this.value)
+}
+
+employee_slider.oninput = function() {
+    employee_value.innerHTML = "<b>" + this.value + "%</b>";
+    sendRequest(this.value, employer_slider.value, age_slider.value)
+}
+
+employer_slider.oninput = function() {
+    employer_value.innerHTML = "<b>" + this.value + "%</b>";
+    sendRequest(employee_slider.value, this.value, age_slider.value)
+}
+</script>
+{% endblock %}

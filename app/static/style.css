@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a:link, a:visited {
+    color: #323232;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.container {
+    width: 960px;
+    margin: 0 auto;
+    padding-top: 0.5rem;
+}
+
+#top-bar {
+    background: #E9E9E9;
+    height: 125px;
+}
+
+#logo {
+    float: left;
+}
+
+#nav {
+    float: right;
+    padding-top: 1.8rem;
+    word-spacing: 20px;
+    text-align: right;
+}
+
+.slidecontainer {
+    margin-bottom: 50px;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;   
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: #04AA6D;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #04AA6D;
+    cursor: pointer;
+  }
+
+  .reward-grid {
+    display: grid;
+  }
+
+  .reward {
+    grid-column: 1;
+    grid-row: 1;
+    width: 400px;
+  }
+
+  .cover {
+    grid-column: 1;
+    grid-row: 1;
+    width: 400px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  }
+
+  .cover-item {
+    background: #666666;
+    color: white;
+    text-align: center;
+    padding-top: 1.5rem;
+  }
